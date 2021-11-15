@@ -1,0 +1,114 @@
+<div class="container-fluid position-relative bg-colored py-5 text-white min-vh-100">
+  <div  *ngIf="dataLoaded;else preloader">
+    <div class="row py-5 text-center text-lg-start" *ngIf="movieDetails != undefined">
+      <div class="col-lg-3 offset-0 offset-lg-2">
+        <img [src]="imgSrc+movieDetails.poster_path" alt="" class="img-fluid">
+      </div>
+      <div class="col-lg-5 ps-0 ps-lg-5">
+        <h1 class="pb-4 pt-4 pt-lg-0">
+          {{movieDetails.title}}
+        </h1>
+        <p>
+          <small>{{movieDetails.release_date}}</small>
+
+          <span class="fw-bold mx-2">{{movieDetails.runtime|timeFormat}}</span>
+          <a class="play-link text-white px-2 text-decoration-none"
+            href="https://www.youtube.com/watch?v={{getOfficialTrailerKey()}}"><i class="fas fa-play"></i> Play
+            Trailer</a>
+        </p>
+        <small>{{movieDetails.tagline}}</small><br><br>
+        <p class="px-2 px-md-0 text-center text-md-start">
+          {{movieDetails.overview}}
+        </p>
+
+        <small>UserScore: {{movieDetails.vote_average}}</small><br><br>
+        <div class="d-flex flex-wrap justify-content-center justify-content-lg-start">
+          <small *ngFor="let genre of movieDetails.genres" class="p-2 genre text-nowrap rounded-3 my-1 me-2">
+            {{genre.name}}
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="row py-5 m-auto px-0 justify-content-center">
+      <div class="col-md-8">
+        <h4>Cast</h4>
+        <owl-carousel-o [options]="customOptions">
+
+          <ng-container *ngFor="let person of cast">
+            <ng-template carouselSlide [id]="person.id.toString()">
+              <person-card [person]="person"></person-card>
+            </ng-template>
+          </ng-container>
+
+        </owl-carousel-o>
+      </div>
+      <div class="row justify-content-center m-auto px-0">
+        <div class="col-md-8">
+          <h4>Media</h4>
+          <ul class="nav nav-tabs border-bottom-0" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="backdrops-tab" data-bs-toggle="tab" data-bs-target="#backdrops"
+                type="button" role="tab" aria-controls="backdrops" aria-selected="false">Backdrops</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="videos-tab" data-bs-toggle="tab" data-bs-target="#videos" type="button"
+                role="tab" aria-controls="videos" aria-selected="false">Videos</button>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="backdrops" role="tabpanel" aria-labelledby="profile-tab">
+              <ng-image-slider [images]="backdropsCollection" [manageImageRatio]="true" [lazyLoading]="true" #nav>
+              </ng-image-slider>
+            </div>
+            <div class="tab-pane fade" id="videos" role="tabpanel" aria-labelledby="profile-tab">
+              <ng-image-slider [images]="videoCollection" [manageImageRatio]="true" [lazyLoading]="true" #nav>
+              </ng-image-slider>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <div class="row justify-content-center m-auto px-0" *ngIf="reviews != undefined && reviews.length !=0">
+        <div class="col-md-8">
+          <h4 class="py-2">Reviews</h4>
+          <div class="ps-2 ps-sm-4 py-3" *ngFor="let review of reviews">
+            <h6 class="mb-0">A review by {{review.author}}</h6>
+            <span class="text-muted" style="font-size: 13px;">Written by {{review.author}} - on
+              {{review.created_at}}</span>
+            <p class="pt-2 mb-0 review" style="font-size: 14px;">{{review.content}}</p><button
+              class="border-0 bg-transparent text-info" *ngIf="review.content.length > 100"
+              (click)="showReview($event)">Show More</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row position-relative pt-5 m-auto justify-content-center px-0"
+        *ngIf="recommendations != undefined && recommendations.length>=5">
+        <div class="col-md-10">
+          <h4>Recommendations</h4>
+
+          <owl-carousel-o [options]="customOptions">
+
+            <ng-container *ngFor="let recommendation of recommendations">
+              <ng-template carouselSlide>
+                <item-card [item]="recommendation"></item-card>
+              </ng-template>
+            </ng-container>
+
+          </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #preloader>
+  <div class="preloader justify-content-center align-items-center">
+    <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+  </div>
+</ng-template>

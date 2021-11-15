@@ -1,0 +1,46 @@
+.nav .nav-item .nav-link{
+    color: #fff;
+}
+
+.nav .nav-item .nav-link{
+    border-color:transparent;
+}
+
+.nav .nav-item .active{
+    background-color: transparent;
+    border-bottom-color: #24baef;
+    color: #24baef;
+}
+.nav .nav-item:hover .nav-link,
+.nav .nav-item:hover{
+    border-bottom-color:inherit;
+    color: #24baef;
+}
+
+.genre{
+    background: #1f273b;
+}
+
+
+.play-link {
+    transition: all .3s;
+  }
+  
+  .play-link:hover {
+    color: #B4B4B1 !important;
+  }
+  
+  
+  .review {
+    max-width: 100ch;
+    max-height: 30px;
+    overflow: hidden;
+  }
+  
+  
+  .show {
+    overflow: visible;
+    max-height: none;
+    height: auto;
+  }
+  

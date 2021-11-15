@@ -1,0 +1,21 @@
+<div class="item-wrap d-flex flex-column p-0 mx-2 mt-3">
+    <div class="img-wrap position-relative w-100">
+      <div class="rate-box d-flex justify-content-center align-items-center position-absolute shadow-lg">
+      {{item.vote_average| number : '1.1-1'}}
+      </div>
+    <img [routerLink]="[item.title != null ? '/movie' : '/tvShow',item.id]"  routerLinkActive="router-link-active"
+      *ngIf="item.poster_path != null else tempImg" [src]="imgSrc+item.poster_path" class="img-fluid" />
+      <div class="favourite-box position-absolute d-flex justify-content-center align-items-center shadow-lg">
+        <i [id]="item.id" class="fa fa-heart" [ngClass]="{favorite: favorites.ids.includes(item.id.toString())}" (click)="ToggleFavorite($event)"></i>
+        </div>
+    </div>
+    <div class="d-flex pt-2 align-items-baseline">
+      <a  [routerLink]="[item.title != null ? '/movie' : '/tvShow',item.id]" routerLinkActive="router-link-active" class="pt-2 text-decoration-none text-white">{{item.title != null ? item.title : item.name}}</a> 
+    </div>
+    
+  </div>
+
+  <ng-template #tempImg>
+    <img src="../../assets/images/fposter,small,wall_texture,product,750x1000.jpg" height="260" />
+  </ng-template>
+  

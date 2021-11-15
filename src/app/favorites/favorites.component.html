@@ -1,0 +1,17 @@
+<div class="sidebar-container position-fixed" *ngIf="authenticated">
+<div class="side-button d-flex align-items-center justify-content-center p-0" id="side-btn" (click)="openFavorites()">
+    <i class="fas fa-heart"></i>
+</div>
+<div class="sidebar">
+    <p>Favorites</p>
+    <hr>
+    <div class="container favorites">
+        <div class="row g-3">
+            <div class="d-flex col-md-4" *ngFor="let item of favorites">
+                <item-card [item]="item"></item-card>
+             </div>
+        </div>
+    </div>
+ 
+</div>
+</div>

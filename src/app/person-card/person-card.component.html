@@ -1,0 +1,12 @@
+<div class="item-wrap d-flex flex-column p-0 mx-2 mt-3">
+    <img *ngIf="person.profile_path != null else tempImg" [src]="imgSrc+person.profile_path" class="img-fluid" />
+    <div class="d-flex flex-column pt-2">
+      <span class="pt-2 text-decoration-none text-white">{{person.name}}</span>
+      <span class="pt-2 text-decoration-none text-muted" style="font-size: 14px;">{{person.character}}</span>
+    </div>
+</div>
+
+  <ng-template #tempImg>
+    <img src="../../assets/images/fposter,small,wall_texture,product,750x1000.jpg" height="260" />
+  </ng-template>
+  

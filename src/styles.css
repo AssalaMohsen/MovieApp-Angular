@@ -1,0 +1,150 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&display=swap');
+
+body{
+    font-weight: 300 !important;
+    font-family: 'Montserrat Alternates';
+}
+
+.bg-colored{
+    background: #131722;
+}
+
+
+h2{
+    color:#fff;
+}
+
+img{
+    border-radius: .3rem;
+    cursor: pointer;
+}
+
+
+.owl-prev
+{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 30%;
+    left:-15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50% !important;
+}
+
+
+
+.owl-next
+{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 30%;
+    right: -15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50% !important;
+}
+
+.owl-prev i{
+    margin-right: 5px;
+    color: #131722c4;
+}
+.owl-next i{
+    margin-left: 5px;
+    color: #131722c4;
+}
+  
+
+.owl-carousel .owl-stage-outer {
+    position: relative;
+    padding-bottom: 50px;
+}
+
+.next,
+.prev
+{
+    text-decoration: none !important;
+}
+
+.favorites a{
+    color:#000 !important;
+  }
+
+.favorites img{
+    min-height: auto !important;
+}
+
+
+  
+/* Preloader Style */
+
+.preloader {
+    display: flex;
+    z-index: 9;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    background-color: #131722;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+
+    position: relative;
+    margin: 100px auto;
+}
+
+
+.double-bounce1,
+.double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #babacf;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+    animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-bounce {
+
+    0%,
+    100% {
+        -webkit-transform: scale(0.0)
+    }
+
+    50% {
+        -webkit-transform: scale(1.0)
+    }
+}
+
+@keyframes sk-bounce {
+
+    0%,
+    100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    }
+
+    50% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
+}

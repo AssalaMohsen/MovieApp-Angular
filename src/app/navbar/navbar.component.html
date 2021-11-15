@@ -1,0 +1,111 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-colored px-2 shadow py-2 py-lg-1 ">
+  <div class="container-fluid d-flex justify-content-between">
+    <div class="d-flex">
+      <a [routerLink]="['/home']" class="navbar-brand fs-3 fw-bold mx-0 mx-md-2" href="#">Noxe</a>
+
+      <div class="px-3 py-2 px-md-5 search-container text-center" *ngIf="authenticated">
+        <div class="p-0 position-relative">
+          <input type="text" id="searchInput" class="input-field py-1 px-3 border-0" placeholder="Search..."
+            autocomplete="off" (keyup)="search($event)">
+          <div id="searchResults" class="bg-white"
+            *ngIf="searchValue != undefined && searchValue !='' && searchResults!=undefined && searchResults.length !=0">
+            <div *ngIf="dataLoaded;else loader">
+              <div *ngFor="let result of searchResults" class="d-flex p-2">
+                <img [routerLink]="[result.title == undefined ?'/tvShowDetails' : '/movieDetails',result.id]"
+                  [src]="imgSrc+result.poster_path" alt="" height="50">
+                <div class="d-flex flex-column text-start">
+                  <span class="text-muted px-2"
+                    style="font-size: 10px;">{{result.title == undefined ? "TvShow" : "Movie"}}</span>
+                  <a href="#" [routerLink]="[result.title == undefined ?'/tvShowDetails' : '/movieDetails',result.id]"
+                    class="text-start px-2 fw-bold"
+                    style="font-size: 11px;">{{result.title== undefined ? result.name : result.title}}</a>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <a [routerLink]="['/searchResults',searchValue]" href="#"
+                class="text-decoration-none py-2 text-black fw-bold">
+                Show More
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" style="max-width: 500px;">
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#" *ngIf="authenticated" [routerLink]="['/home']" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item dropdown" *ngIf="authenticated">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="moviesDropdownMenuLink"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Movies
+          </a>
+
+          <ul class="dropdown-menu bg-colored" aria-labelledby="moviesDropdownMenuLink">
+            <li><a class="dropdown-item text-white" [routerLink]="['/movies','top_rated']" routerLinkActive="active"
+                href="#">Top Rated</a></li>
+            <li><a class="dropdown-item text-white" [routerLink]="['/movies','popular']" routerLinkActive="active"
+                href="#">Most Popular</a></li>
+            <li><a class="dropdown-item text-white" [routerLink]="['/movies','now_playing']" routerLinkActive="active"
+                href="#">Now Playing</a></li>
+            <li><a class="dropdown-item text-white" [routerLink]="['/movies','upcoming']" routerLinkActive="active"
+                href="#">Upcoming</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown" *ngIf="authenticated">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="tvShowsDropdownMenuLink"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            TvShows
+          </a>
+
+          <ul class="dropdown-menu bg-colored" aria-labelledby="tvShowsDropdownMenuLink">
+            <li><a class="dropdown-item text-white" [routerLink]="['/tvShows','top_rated']" routerLinkActive="active"
+                href="#">Top Rated</a></li>
+            <li><a class="dropdown-item text-white" [routerLink]="['/tvShows','popular']" routerLinkActive="active"
+                href="#">Most Popular</a></li>
+            <li><a class="dropdown-item text-white" [routerLink]="['/tvShows','airing_today']" routerLinkActive="active"
+                href="#">Airing Today</a></li>
+            <li><a class="dropdown-item text-white" [routerLink]="['/tvShows','on_the_air']" routerLinkActive="active"
+                href="#">On TV</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" *ngIf="!authenticated" [routerLink]="['/register']"
+            routerLinkActive="active">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" *ngIf="!authenticated" [routerLink]="['/login']"
+            routerLinkActive="active">Login</a>
+        </li>
+
+        <li class="nav-item dropdown" *ngIf="authenticated">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="account" data-bs-toggle="dropdown"
+            aria-expanded="false" *ngIf="userData != null">
+            Hello, {{userData.first_name}}
+          </a>
+
+          <ul class="dropdown-menu bg-colored" aria-labelledby="accountDropdownMenuLink">
+            <li><a class="dropdown-item logout-link" href="#" *ngIf="authenticated" (click)="logout()"
+                [routerLink]="['/logout']" routerLinkActive="active">Logout</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+
+
+
+  </div>
+</nav>
+
+<ng-template #loader>
+  <i class="fas fa-spinner fa-2x fa-spin p-5"></i>
+</ng-template>

@@ -1,0 +1,47 @@
+<div class="container-fluid bg-colored p-5 min-vh-100">
+  <div class="row justify-content-center mt-5">
+    <div class="col-lg-6 col-md-10">
+      <h2 class="mt-5">Registration Form</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="getData(registerForm)">
+
+        <div class="py-3">
+          <input type="text" formControlName="first_name" placeholder="First Name" class="form-control shadow-none" [ngClass]="{'invalid': registerForm.controls.first_name.invalid && registerForm.controls.first_name.dirty,'valid':registerForm.controls.first_name.valid && registerForm.controls.first_name.dirty}">
+        </div>
+
+        <div class="py-3">
+          <input type="text" formControlName="last_name" placeholder="Last Name" class="form-control shadow-none" [ngClass]="{'invalid': registerForm.controls.last_name.invalid && registerForm.controls.last_name.dirty,'valid':registerForm.controls.last_name.valid && registerForm.controls.last_name.dirty}">
+        </div>
+  
+        <div class="py-3">
+          <input type="text" formControlName="age" placeholder="Age" class="form-control shadow-none" [ngClass]="{'invalid': registerForm.controls.age.invalid && registerForm.controls.age.dirty,'valid':registerForm.controls.age.valid && registerForm.controls.age.dirty}">
+        </div>
+    
+        <div class="py-3">
+          <input type="text" formControlName="email" placeholder="Email" class="form-control shadow-none" [ngClass]="{'invalid': registerForm.controls.email.invalid && registerForm.controls.email.dirty,'valid':registerForm.controls.email.valid && registerForm.controls.email.dirty}">
+        </div>
+       
+        <div class="py-3">
+          <input type="password" formControlName="password" placeholder="Password" class="form-control shadow-none" [ngClass]="{'invalid': registerForm.controls.password.invalid && registerForm.controls.password.dirty,'valid':registerForm.controls.password.valid && registerForm.controls.password.dirty}">
+        </div>
+      
+        <div class="py-3">
+          <button class="btn btn-primary" [disabled]="!registerForm.valid" *ngIf="dataLoaded;else loader">Submit</button>
+        </div>
+        <div class="text-danger"
+        *ngIf="success==false">
+       Email is Already Registered
+      </div>
+        <div class="text-success"
+        *ngIf="success==true">
+       Your account is successfully registered <a href="#" [routerLink]="['/login']" class="text-white">Login?</a>
+      </div>
+
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #loader>
+  <i class="fas fa-spinner fa-2x text-white fa-spin"></i>
+</ng-template>

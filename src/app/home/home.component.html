@@ -1,0 +1,48 @@
+<div class="container-fluid py-5 px-3 px-md-5 bg-colored text-white min-vh-100">
+  <div *ngIf="moviesLoaded && tvShowsLoaded;else preloader">
+    <div class="row pt-5 g-3" id="data">
+      <div class="col-md-4 d-flex flex-column px-3">
+
+        <div class="w-75">
+          <div class="w-25 mb-5 mt-3" style="height: 1px;background-color: #d6d3d031;"></div>
+          <h2 class="fw-light">
+            Trending Movies To Watch Now.
+          </h2>
+          <small class="fw-light">Most Popular Movies Today</small>
+          <div class="w-100 my-5" style="height: 1px;background-color: #d6d3d031;"></div>
+        </div>
+
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 " *ngFor="let movie of movies">
+        <item-card [item]="movie"></item-card>
+      </div>
+    </div>
+    <div class="row pt-5 g-3" id="data">
+      <div class="col-md-4 d-flex flex-column px-3">
+
+        <div class="w-75">
+          <div class="w-25 mb-5 mt-3" style="height: 1px;background-color: #d6d3d031;"></div>
+          <h2 class="fw-light">
+            Trending TvShows To Watch Now.
+          </h2>
+          <small class="fw-light">Most Popular TvShows Today</small>
+          <div class="w-100 my-5" style="height: 1px;background-color: #d6d3d031;"></div>
+        </div>
+
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 " *ngFor="let tvShow of tvShows">
+        <item-card [item]="tvShow"></item-card>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<ng-template #preloader>
+  <div class="preloader justify-content-center align-items-center">
+    <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+  </div>
+</ng-template>

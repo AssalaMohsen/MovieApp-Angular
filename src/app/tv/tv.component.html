@@ -1,0 +1,28 @@
+<div class="container-fluid py-5 px-3 px-md-5 bg-colored text-white min-vh-100">
+  <div *ngIf="dataLoaded;else preloader">
+    <div class="row pt-5 g-3" id="data">
+      <h4 class="text-muted">TvShows <i class="fas fa-chevron-right fs-5"></i> <span
+          style="font-size: 16px;color:#fff;">
+          {{category|formatCategoryString}}</span></h4>
+      <div class="col-6 col-md-4 col-lg-3 col-xl-2 " *ngFor="let tvShow of tvShows">
+        <item-card [item]="tvShow"></item-card>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center" *ngIf="!endOfPages">
+      <button class="btn load-more-btn shadow-none my-5" (click)="loadMore()" *ngIf="moreLoaded;else loader">Load More</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #preloader>
+  <div class="preloader justify-content-center align-items-center">
+    <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #loader>
+  <i class="fas fa-spinner fa-3x fa-spin p-5"></i>
+</ng-template>
