@@ -11,12 +11,12 @@
             *ngIf="searchValue != undefined && searchValue !='' && searchResults!=undefined && searchResults.length !=0">
             <div *ngIf="dataLoaded;else loader">
               <div *ngFor="let result of searchResults" class="d-flex p-2">
-                <img [routerLink]="[result.title == undefined ?'/tvShowDetails' : '/movieDetails',result.id]"
+                <img [routerLink]="[result.title == undefined ?'/tvShow' : '/movie',result.id]"
                   [src]="imgSrc+result.poster_path" alt="" height="50">
                 <div class="d-flex flex-column text-start">
                   <span class="text-muted px-2"
                     style="font-size: 10px;">{{result.title == undefined ? "TvShow" : "Movie"}}</span>
-                  <a href="#" [routerLink]="[result.title == undefined ?'/tvShowDetails' : '/movieDetails',result.id]"
+                  <a href="#" [routerLink]="[result.title == undefined ?'/tvShow' : '/movie',result.id]"
                     class="text-start px-2 fw-bold"
                     style="font-size: 11px;">{{result.title== undefined ? result.name : result.title}}</a>
                 </div>
